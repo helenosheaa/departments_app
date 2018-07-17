@@ -19,7 +19,9 @@ public class EngineersController {
         this.setupEndpoints();
     }
 
+
     private void setupEndpoints() {
+        // index
         get("/engineers", (req, res) -> {
             Map<String, Object> model = new HashMap();
             model.put("template", "templates/engineers/index.vtl");
@@ -30,6 +32,7 @@ public class EngineersController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        // new
         get("/engineers/new", (req, res) -> {
             HashMap<String, Object> model = new HashMap<>();
             List<Department> departments = DBHelper.getAll(Department.class);
@@ -38,6 +41,7 @@ public class EngineersController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        // create
         post("/engineers", (req, res) -> {
 
             int departmentId = Integer.parseInt(req.queryParams("department"));
@@ -50,7 +54,6 @@ public class EngineersController {
 
             int salary = Integer.parseInt(req.queryParams("salary"));
 
-
             Engineer engineer = new Engineer(firstName, lastName, salary, department);
 
             DBHelper.save(engineer);
@@ -59,6 +62,7 @@ public class EngineersController {
             return null;
         }, new VelocityTemplateEngine());
 
+        // show
         get("/engineers/:id", (req, res) -> {
 
             Map<String, Object> model = new HashMap();
@@ -71,6 +75,7 @@ public class EngineersController {
 
         }, new VelocityTemplateEngine());
 
+        // edit
         get("/engineers/:id/edit", (req, res) -> {
             int engineerId = Integer.parseInt(req.params(":id"));
 
@@ -87,6 +92,7 @@ public class EngineersController {
 
         },new VelocityTemplateEngine());
 
+        //update
         post("/engineers/:id", (req, res) -> {
             Engineer engineer = new Engineer();
 
@@ -104,6 +110,7 @@ public class EngineersController {
             return null;
         }, new VelocityTemplateEngine());
 
+        //delete
         post ("/engineers/:id/delete", (req, res) -> {
 
             int engineerId = Integer.parseInt(req.params(":id"));

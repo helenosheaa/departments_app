@@ -8,6 +8,7 @@
             <th>Salary</th>
             <th>Department</th>
             <th>Budget</th>
+            <th>Delete</th>
         </tr>
         <tr>
             <td>$manager.getFirstName()</td>
@@ -15,6 +16,9 @@
             <td>£$manager.getSalary()</td>
             <td>$manager.getDepartment().getTitle()</td>
             <td>£$manager.getBudget()</td>
+            <td><form action="/managers/$manager.getId()/delete" method="POST">
+                <input type="submit" value="Delete Manager"/>
+            </form></td>
         </tr>
         </table>
 </div>
