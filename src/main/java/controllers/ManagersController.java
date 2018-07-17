@@ -2,7 +2,6 @@ package controllers;
 
 import db.DBHelper;
 import models.Department;
-import models.Employee;
 import models.Manager;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
